@@ -13,9 +13,12 @@ export class RoomComponent implements OnInit {
   currentStream: any;
   listUser: Array<any> = [];
 
-  constructor(private route: ActivatedRoute, private webSocketService: WebSocketService,
-              private peerService: PeerService) {
-    this.roomName = route.snapshot.paramMap.get('id');
+  constructor(
+    private route: ActivatedRoute, 
+    private webSocketService: WebSocketService,
+    private peerService: PeerService
+  ){
+    // this.roomName = route.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
@@ -29,9 +32,9 @@ export class RoomComponent implements OnInit {
     peer.on('open', (id) => {
       const body = {
         idPeer: id,
-        roomName: this.roomName
+        roomName: '322c00c6-9e43-48d4-9e5f-c621eb04f7a8'
       };
-
+      console.log(body);
       this.webSocketService.joinRoom(body);
     });
 
@@ -48,6 +51,7 @@ export class RoomComponent implements OnInit {
 
   initSocket = () => {
     this.webSocketService.cbEvent.subscribe(res => {
+      console.log("holaaaaaaaaaaaaaa ",res);
       if (res.name === 'new-user') {
         const {idPeer} = res.data;
         this.sendCall(idPeer, this.currentStream);

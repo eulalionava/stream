@@ -6,7 +6,7 @@ import {RoomComponent} from "./pages/room/room.component";
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: RoomComponent
   },
   {
     path: ':id',

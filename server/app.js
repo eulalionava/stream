@@ -13,7 +13,7 @@ io.on('connection', (socket) => {
     socket.on('join', (data) => {
         const roomName = data.roomName;
         socket.join(roomName);
-        socket.to(roomName).broadcast.emit('new-user', data)
+        socket.to(roomName).broadcast.emit('new-user', data);
 
         socket.on('disconnect', () => {
             socket.to(roomName).broadcast.emit('bye-user', data)
